@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #2c3e50, #1e3c72, #2a5298);
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container com efeito de vidro (Glassmorphism) */
+.login-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+}
+
+.login-box {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+h2 {
+    color: #1e3c72;
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+}
+
+/* Seletor Deslizante de Perfil */
+.perfil-seletor {
+    display: flex;
+    position: relative;
+    background: #e2e8f0;
+    padding: 4px;
+    border-radius: 30px;
+    margin-bottom: 25px;
+}
+
+.perfil-seletor input[type="radio"] {
+    display: none;
+}
+
+.opcao-aba {
+    flex: 1;
+    padding: 12px 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+/* Background animado que corre atrás do texto selecionado */
+.slider-bg {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    height: calc(100% - 8px);
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+/* Movimentação do Slider dependendo do Radio ativo */
+#radio-professor:checked ~ .slider-bg {
+    transform: translateX(0);
+}
+
+#radio-aluno:checked ~ .slider-bg {
+    transform: translateX(100%);
+}
+
+#radio-professor:checked ~ label[for="radio-professor"],
+#radio-aluno:checked ~ label[for="radio-aluno"] {
+    color: #1e3c72;
+}
+
+/* Inputs e Formulário */
+.input-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f8fafc;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #1e3c72;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(30, 60, 114, 0.15);
+}
+
+/* Botão */
+.btn-acessar {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(30, 60, 114, 0.3);
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-acessar:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(30, 60, 114, 0.4);
+}
+
+/* Alerta de erro */
+.erro-alerta {
+    display: none;
+    margin-top: 15px;
+    background-color: #fee2e2;
+    color: #dc2626;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    border: 1px solid #fca5a5;
+}

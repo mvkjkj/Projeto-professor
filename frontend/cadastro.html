@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Criar Conta - EPT TASKS | Portal Escolar</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #1e3a8a
+                );
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 20px;
+
+            position: relative;
+        }
+
+        /* =========================
+           BOTÃO VOLTAR
+        ========================= */
+
+        .btn-voltar-home {
+
+            position: absolute;
+
+            top: 25px;
+
+            left: 25px;
+
+            color: #cbd5e1;
+
+            text-decoration: none;
+
+            font-size: 0.9rem;
+
+            font-weight: bold;
+
+            background:
+                rgba(255, 255, 255, 0.08);
+
+            padding: 10px 18px;
+
+            border-radius: 8px;
+
+            backdrop-filter: blur(10px);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.12);
+
+            transition: 0.3s;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+        }
+
+        .btn-voltar-home:hover {
+
+            background:
+                rgba(255, 119, 0, 0.2);
+
+            color: #ff9a4d;
+
+            border-color: #ff7700;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .cadastro-container {
+
+            width: 100%;
+
+            max-width: 480px;
+
+            margin: 40px 0;
+        }
+
+        .cadastro-box {
+
+            background:
+                rgba(15, 23, 42, 0.82);
+
+            backdrop-filter: blur(15px);
+
+            padding: 35px 30px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 25px 60px
+                rgba(0, 0, 0, 0.4);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.12);
+
+            text-align: center;
+        }
+
+        /* =========================
+           LOGO
+        ========================= */
+
+        .logo-mini {
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 15px;
+
+            color: white;
+        }
+
+        .logo-mini span {
+            color: #ff7700;
+        }
+
+        h2 {
+
+            color: white;
+
+            font-size: 1.5rem;
+
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+
+            color: #cbd5e1;
+
+            font-size: 0.88rem;
+
+            margin-bottom: 22px;
+        }
+
+        /* =========================
+           SELETOR PROFESSOR / ALUNO
+        ========================= */
+
+        .perfil-seletor {
+
+            display: flex;
+
+            position: relative;
+
+            background:
+                rgba(255, 255, 255, 0.08);
+
+            padding: 5px;
+
+            border-radius: 30px;
+
+            margin-bottom: 22px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.1);
+        }
+
+        .perfil-seletor input[type="radio"] {
+            display: none;
+        }
+
+        .opcao-aba {
+
+            flex: 1;
+
+            padding: 10px 0;
+
+            font-size: 0.88rem;
+
+            font-weight: 600;
+
+            color: #94a3b8;
+
+            cursor: pointer;
+
+            z-index: 2;
+
+            transition: 0.3s;
+
+            user-select: none;
+        }
+
+        .slider-bg {
+
+            position: absolute;
+
+            top: 5px;
+
+            left: 5px;
+
+            width: calc(50% - 5px);
+
+            height: calc(100% - 10px);
+
+            background: #ff7700;
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 4px 15px
+                rgba(255, 119, 0, 0.3);
+
+            transition: 0.3s;
+
+            z-index: 1;
+        }
+
+        #radio-professor:checked ~ .slider-bg {
+            transform: translateX(0);
+        }
+
+        #radio-aluno:checked ~ .slider-bg {
+            transform: translateX(100%);
+        }
+
+        #radio-professor:checked ~ label[for="radio-professor"],
+        #radio-aluno:checked ~ label[for="radio-aluno"] {
+            color: white;
+        }
+
+        /* =========================
+           CAMPOS
+        ========================= */
+
+        .input-group {
+
+            text-align: left;
+
+            margin-bottom: 15px;
+        }
+
+        label {
+
+            display: block;
+
+            font-size: 0.82rem;
+
+            font-weight: 600;
+
+            color: #e2e8f0;
+
+            margin-bottom: 5px;
+        }
+
+        .input-wrapper {
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+        }
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 14px;
+
+            color: #94a3b8;
+
+            font-size: 0.9rem;
+
+            pointer-events: none;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+
+            width: 100%;
+
+            padding:
+                11px
+                16px
+                11px
+                42px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.15);
+
+            border-radius: 9px;
+
+            font-size: 0.9rem;
+
+            background:
+                rgba(255, 255, 255, 0.05);
+
+            color: white;
+
+            transition: 0.3s;
+        }
+
+        input::placeholder {
+            color: #64748b;
+        }
+
+        input:focus {
+
+            outline: none;
+
+            border-color: #ff7700;
+
+            background:
+                rgba(255, 255, 255, 0.08);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(255, 119, 0, 0.25);
+        }
+
+        /* =========================
+           CAMPOS CONDICIONAIS
+        ========================= */
+
+        .campo-condicional {
+            display: none;
+        }
+
+        .campo-condicional.ativo {
+            display: block;
+        }
+
+        /* =========================
+           BOTÃO
+        ========================= */
+
+        .btn-cadastrar {
+
+            width: 100%;
+
+            padding: 13px;
+
+            background: #ff7700;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 9px;
+
+            font-size: 0.98rem;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 25px
+                rgba(255, 119, 0, 0.25);
+
+            transition: 0.3s;
+
+            margin-top: 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+        }
+
+        .btn-cadastrar:hover:not(:disabled) {
+
+            background: #e66b00;
+
+            transform: translateY(-2px);
+        }
+
+        .btn-cadastrar:disabled {
+
+            opacity: 0.7;
+
+            cursor: not-allowed;
+        }
+
+        /* =========================
+           ALERTAS
+        ========================= */
+
+        .alerta-box {
+
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 10px;
+
+            border-radius: 8px;
+
+            font-size: 0.85rem;
+        }
+
+        .erro-alerta {
+
+            background:
+                rgba(239, 68, 68, 0.15);
+
+            color: #f87171;
+
+            border:
+                1px solid
+                rgba(239, 68, 68, 0.3);
+        }
+
+        .sucesso-alerta {
+
+            background:
+                rgba(34, 197, 94, 0.15);
+
+            color: #4ade80;
+
+            border:
+                1px solid
+                rgba(34, 197, 94, 0.3);
+        }
+
+        /* =========================
+           RODAPÉ
+        ========================= */
+
+        .footer-links {
+
+            margin-top: 18px;
+
+            font-size: 0.85rem;
+
+            color: #94a3b8;
+        }
+
+        .footer-links a {
+
+            color: #ff9a4d;
+
+            text-decoration: none;
+
+            font-weight: bold;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================
+           ANIMAÇÃO
+        ========================= */
+
+        @keyframes shake {
+
+            0%, 100% {
+                transform: translateX(0);
+            }
+
+            20%, 60% {
+                transform: translateX(-6px);
+            }
+
+            40%, 80% {
+                transform: translateX(6px);
+            }
+        }
+
+        .shake {
+            animation: shake 0.35s ease-in-out;
+        }
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 500px) {
+
+            .btn-voltar-home {
+
+                top: 15px;
+
+                left: 15px;
+
+                padding: 8px 12px;
+
+                font-size: 0.8rem;
+            }
+
+            .cadastro-box {
+
+                padding:
+                    30px
+                    20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- VOLTAR -->
+
+    <a
+        href="index.html"
+        class="btn-voltar-home"
+    >
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Voltar
+
+    </a>
+
+
+    <div class="cadastro-container">
+
+        <div class="cadastro-box">
+
+            <div class="logo-mini">
+
+                EPT
+                <span>TASKS</span>
+                📋
+
+            </div>
+
+            <h2>
+                Criar sua conta
+            </h2>
+
+            <p class="subtitle">
+                Cadastre-se para acessar o Portal Escolar
+            </p>
+
+
+            <!-- PROFESSOR / ALUNO -->
+
+            <div class="perfil-seletor">
+
+                <input
+                    type="radio"
+                    id="radio-professor"
+                    name="perfil"
+                    value="professor"
+                    checked
+                >
+
+                <label
+                    for="radio-professor"
+                    class="opcao-aba"
+                >
+                    👨‍🏫 Professor
+                </label>
+
+
+                <input
+                    type="radio"
+                    id="radio-aluno"
+                    name="perfil"
+                    value="aluno"
+                >
+
+                <label
+                    for="radio-aluno"
+                    class="opcao-aba"
+                >
+                    👨‍🎓 Aluno
+                </label>
+
+
+                <div class="slider-bg"></div>
+
+            </div>
+
+
+            <!-- FORMULÁRIO -->
+
+            <form id="form-cadastro">
+
+                <!-- NOME -->
+
+                <div class="input-group">
+
+                    <label for="nome">
+                        Nome Completo:
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i
+                            class="fa-regular fa-user input-icon"
+                        ></i>
+
+                        <input
+                            type="text"
+                            id="nome"
+                            placeholder="Seu nome completo"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="input-group">
+
+                    <label for="email">
+                        E-mail:
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i
+                            class="fa-regular fa-envelope input-icon"
+                        ></i>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="seuemail@escola.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- DISCIPLINA -->
+
+                <div
+                    id="bloco-professor"
+                    class="campo-condicional ativo"
+                >
+
+                    <div class="input-group">
+
+                        <label for="disciplina">
+                            Disciplina / Área EPT:
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i
+                                class="fa-solid fa-book input-icon"
+                            ></i>
+
+                            <input
+                                type="text"
+                                id="disciplina"
+                                placeholder="Ex: Programação Web"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TURMA -->
+
+                <div
+                    id="bloco-aluno"
+                    class="campo-condicional"
+                >
+
+                    <div class="input-group">
+
+                        <label for="turma">
+                            Turma / Módulo:
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i
+                                class="fa-solid fa-graduation-cap input-icon"
+                            ></i>
+
+                            <input
+                                type="text"
+                                id="turma"
+                                placeholder="Ex: Info-2026/1"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SENHA -->
+
+                <div class="input-group">
+
+                    <label for="senha">
+                        Senha:
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i
+                            class="fa-solid fa-lock input-icon"
+                        ></i>
+
+                        <input
+                            type="password"
+                            id="senha"
+                            placeholder="Mínimo 6 caracteres"
+                            minlength="8"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTÃO -->
+
+                <button
+                    type="submit"
+                    id="btn-submit"
+                    class="btn-cadastrar"
+                >
+
+                    <span>
+                        Criar Conta
+                    </span>
+
+                    <i class="fa-solid fa-user-plus"></i>
+
+                </button>
+
+            </form>
+
+
+            <!-- MENSAGENS -->
+
+            <div
+                id="mensagem-erro"
+                class="alerta-box erro-alerta"
+            ></div>
+
+            <div
+                id="mensagem-sucesso"
+                class="alerta-box sucesso-alerta"
+            ></div>
+
+
+            <!-- LOGIN -->
+
+            <div class="footer-links">
+
+                <p>
+
+                    Já possui uma conta?
+
+                    <a href="login.html">
+                        Fazer Login
+                    </a>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // =========================
+        // ELEMENTOS
+        // =========================
+
+        const radioProfessor =
+            document.getElementById("radio-professor");
+
+        const radioAluno =
+            document.getElementById("radio-aluno");
+
+        const blocoProfessor =
+            document.getElementById("bloco-professor");
+
+        const blocoAluno =
+            document.getElementById("bloco-aluno");
+
+        const inputDisciplina =
+            document.getElementById("disciplina");
+
+        const inputTurma =
+            document.getElementById("turma");
+
+        const formCadastro =
+            document.getElementById("form-cadastro");
+
+        const btnSubmit =
+            document.getElementById("btn-submit");
+
+        const mensagemErro =
+            document.getElementById("mensagem-erro");
+
+        const mensagemSucesso =
+            document.getElementById("mensagem-sucesso");
+
+
+        // =========================
+        // ALTERNAR PROFESSOR / ALUNO
+        // =========================
+
+        function alternarCamposPerfil() {
+
+            if (radioProfessor.checked) {
+
+                blocoProfessor.classList.add("ativo");
+
+                blocoAluno.classList.remove("ativo");
+
+                inputDisciplina.disabled = false;
+
+                inputTurma.disabled = true;
+
+            } else {
+
+                blocoProfessor.classList.remove("ativo");
+
+                blocoAluno.classList.add("ativo");
+
+                inputDisciplina.disabled = true;
+
+                inputTurma.disabled = false;
+
+            }
+
+        }
+
+
+        radioProfessor.addEventListener(
+            "change",
+            alternarCamposPerfil
+        );
+
+        radioAluno.addEventListener(
+            "change",
+            alternarCamposPerfil
+        );
+
+
+        alternarCamposPerfil();
+
+
+        // =========================
+        // CADASTRO
+        // =========================
+
+        formCadastro.addEventListener(
+            "submit",
+            async function (e) {
+
+                e.preventDefault();
+
+
+                mensagemErro.style.display = "none";
+
+                mensagemSucesso.style.display = "none";
+
+
+                // PEGAR VALORES
+
+                const nome =
+                    document
+                        .getElementById("nome")
+                        .value
+                        .trim();
+
+                const email =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim();
+
+                const senha =
+                    document
+                        .getElementById("senha")
+                        .value;
+
+                const tipo =
+                    radioProfessor.checked
+                        ? "professor"
+                        : "aluno";
+
+
+                console.log(
+                    "Dados do cadastro:",
+                    {
+                        nome,
+                        email,
+                        tipo
+                    }
+                );
+
+
+                // VALIDAR
+
+                if (
+                    nome === "" ||
+                    email === "" ||
+                    senha === ""
+                ) {
+
+                    mostrarErro(
+                        "Preencha nome, e-mail e senha."
+                    );
+
+                    return;
+                }
+
+
+                if (senha.length < 8) {
+
+                    mostrarErro(
+                        "A senha precisa ter pelo menos 8 caracteres."
+                    );
+
+                    return;
+                }
+
+
+                // BOTÃO
+
+                const textoOriginal =
+                    btnSubmit.querySelector(
+                        "span"
+                    ).innerText;
+
+                btnSubmit.disabled = true;
+
+                btnSubmit.querySelector(
+                    "span"
+                ).innerText = "Cadastrando...";
+
+
+                try {
+
+                    // =========================
+                    // ENVIAR PARA O BACKEND
+                    // =========================
+
+                    const resposta = await fetch(
+                        "http://localhost:3000/cadastro",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+
+                                nome: nome,
+
+                                email: email,
+
+                                senha: senha,
+
+                                tipo: tipo
+
+                            })
+                        }
+                    );
+
+
+                    const dados =
+                        await resposta.json();
+
+
+                    console.log(
+                        "Resposta do servidor:",
+                        dados
+                    );
+
+
+                    // =========================
+                    // SUCESSO
+                    // =========================
+
+                    if (resposta.ok) {
+
+                        mensagemSucesso.innerText =
+                            "Conta criada com sucesso! Redirecionando para o login...";
+
+                        mensagemSucesso.style.display =
+                            "block";
+
+
+                        formCadastro.reset();
+
+
+                        setTimeout(
+                            function () {
+
+                                window.location.href =
+                                    "login.html";
+
+                            },
+                            2000
+                        );
+
+
+                    } else {
+
+                        mostrarErro(
+                            dados.erro ||
+                            "Não foi possível criar a conta."
+                        );
+
+                    }
+
+                } catch (erro) {
+
+                    console.error(
+                        "Erro no cadastro:",
+                        erro
+                    );
+
+                    mostrarErro(
+                        "Não foi possível conectar ao servidor. Verifique se o npm run dev está rodando."
+                    );
+
+                } finally {
+
+                    btnSubmit.disabled = false;
+
+                    btnSubmit.querySelector(
+                        "span"
+                    ).innerText =
+                        textoOriginal;
+
+                }
+
+            }
+        );
+
+
+        // =========================
+        // MOSTRAR ERRO
+        // =========================
+
+        function mostrarErro(mensagem) {
+
+            mensagemErro.innerText =
+                mensagem;
+
+            mensagemErro.style.display =
+                "block";
+
+            mensagemErro.classList.add(
+                "shake"
+            );
+
+            setTimeout(
+                function () {
+
+                    mensagemErro.classList.remove(
+                        "shake"
+                    );
+
+                },
+                400
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>
